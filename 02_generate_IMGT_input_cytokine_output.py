@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+# Authors: L. Penter, L. Hansmann
+# Hematology, Oncology, and Tumor Immunology, Charité - Universitätsmedizin Berlin
+
 # extract consensus sequences from fasta files, each containing all sequences from one individual well
 # all files in current directory ending with .fasta will be processed
 # 

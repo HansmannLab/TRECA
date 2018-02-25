@@ -1,3 +1,6 @@
+# Authors: L. Penter, L. Hansmann
+# Hematology, Oncology, and Tumor Immunology, Charité - Universitätsmedizin Berlin
+
 import os
 import random
 import subprocess

@@ -1,5 +1,8 @@
 # 2018-10-12 fix for PurgeConsensusReadAlpha
 
+# Authors: L. Penter, L. Hansmann
+# Hematology, Oncology, and Tumor Immunology, Charité - Universitätsmedizin Berlin
+
 import ConsensusClusters
 import CdrExtractionOptions
 

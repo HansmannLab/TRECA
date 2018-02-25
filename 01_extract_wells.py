@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+# Authors: L. Penter, L. Hansmann
+# Hematology, Oncology, and Tumor Immunology, Charité - Universitätsmedizin Berlin
+
 # process fasta file containing all reads and extract sequences according to originating well
 # output is a directory with fasta files containing T cell receptor (TCR) or B cell receptor (BCR)
 # reads sorted by well

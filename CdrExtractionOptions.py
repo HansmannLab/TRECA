@@ -1,4 +1,8 @@
 # configuration file for CdrExtraction 
+
+# Authors: L. Penter, L. Hansmann
+# Hematology, Oncology, and Tumor Immunology, Charité - Universitätsmedizin Berlin
+
 from collections import OrderedDict
 
 # parameters are optimized for single cell analysis 
