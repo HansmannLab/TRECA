@@ -29,8 +29,8 @@ def parse_file(filename, blast_cytokines):
         os.unlink(tmp_file) 
     else:
         possible_TCR_list, cytokine_list = CdrExtraction.ParseWell(filename)
-
         out_imgt.write(CdrExtraction.HighV_QuestInput(filename.split('.')[0], possible_TCR_list))
+
     out_cytokine.write(CdrExtraction.CytokineOutput(filename.split('.')[0], cytokine_list))
 
 # main thread
@@ -50,7 +50,7 @@ if __name__ == '__main__':
     # starting sub-threads
     pool = multiprocessing.Pool()
     for filename in sorted(glob.glob('*.fasta')):
-            pool.apply_async(parse_file, args=(filename, args.blast_cytokines))
+        pool.apply_async(parse_file, args=(filename, args.blast_cytokines))
 
     # clean up
     pool.close()

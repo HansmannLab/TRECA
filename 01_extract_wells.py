@@ -57,7 +57,7 @@ for line in seq:
         # print out statistics of progress
         print('\rAssigned', assigned, '/', read_number, 'TCR: ', tcr_count, 'BCR: ', bcr_count)
         line=line.replace('\n','')
-        # T cell receptor read found
+    # T cell receptor read found
     if line[2:7] in TCR_plate_barcodes and line[9:14] in TCR_row_barcodes and line[len(line)-7:-2] in TCR_column_barcodes and \
             not 'N' in line and not 'AAAAAAAAAAAA' in line and not 'GGGGGGGGGGGG' in line and not 'CCCCCCCCCCCC' in line and not 'TTTTTTTTTTTT' in line:
         location=str(TCR_plate_barcodes.index(line[2:7])+1) + str(chr(ord('A')+TCR_row_barcodes.index(line[9:14]))) + str(TCR_column_barcodes.index(line[len(line)-7:-2])+1)
