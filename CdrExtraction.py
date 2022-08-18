@@ -13,7 +13,7 @@ from Bio import SeqIO
 from Bio.Blast.Applications import NcbiblastnCommandline
 from Bio.Blast import NCBIXML
 from Bio.Seq import Seq
-from cStringIO import StringIO
+from io import StringIO
 
 # extract cytokine from read
 def CytokineExtraction(SEQ, DB):

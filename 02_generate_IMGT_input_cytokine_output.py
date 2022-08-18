@@ -43,8 +43,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # files to be written
-    out_imgt = open(args.imgt_input, 'w',0)
-    out_cytokine = open(args.cytokine_output, 'w',0)
+    out_imgt = open(args.imgt_input, 'w')
+    out_cytokine = open(args.cytokine_output, 'w')
     out_cytokine.write ('Well\t' + '\t'.join(CdrExtractionOptions.CYTOKINE_LIST.keys()) + '\n')
 
     # starting sub-threads
