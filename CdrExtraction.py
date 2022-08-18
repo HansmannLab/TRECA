@@ -13,7 +13,7 @@ from Bio import SeqIO
 from Bio.Blast.Applications import NcbiblastnCommandline
 from Bio.Blast import NCBIXML
 from Bio.Seq import Seq
-from cStringIO import StringIO
+from io import StringIO
 
 # extract cytokine from read
 def CytokineExtraction(SEQ, DB):
@@ -42,27 +42,27 @@ def CytokineOutput(wellname, cytokine_list):
 
 # generate file without cytokine reads and return temporary file plus cytokine list
 def FileWithoutCytokines(filename):
-       	# generate temporary file
-	tmp_file = tempfile.NamedTemporaryFile(delete=False)
-	cytokine_list = copy.deepcopy(CdrExtractionOptions.CYTOKINE_LIST)
+    # generate temporary file
+    tmp_file = tempfile.NamedTemporaryFile(delete=False)
+    cytokine_list = copy.deepcopy(CdrExtractionOptions.CYTOKINE_LIST)
+
+    # read in all reads from sequence file 
+    sequences = ConsensusClusters.ReadSequences(filename)
         
-        # read in all reads from sequence file 
-        sequences = ConsensusClusters.ReadSequences(filename)
-        
-        # go through all reads
-        for s in sequences:
-            # check if read contains cytokine and count it
-            cytokine = CytokineExtraction(sequences[s], CdrExtractionOptions.PATH_TO_CYTOKINE_DB)
-            if cytokine != '':
-                cytokine_list[cytokine]+=1
-            # if it does not contain cytokine, write to file
-            else:   
-                tmp_file.write('>' + s + '\n' + sequences[s] + '\n')
-        
-        # close temporary file
-       	tmp_file.close()
- 
-        return tmp_file.name, cytokine_list
+    # go through all reads
+    for s in sequences:
+        # check if read contains cytokine and count it
+        cytokine = CytokineExtraction(sequences[s], CdrExtractionOptions.PATH_TO_CYTOKINE_DB)
+        if cytokine != '':
+            cytokine_list[cytokine]+=1
+        # if it does not contain cytokine, write to file
+        else:   
+            tmp_file.write('>' + s + '\n' + sequences[s] + '\n')
+
+    # close temporary file
+    tmp_file.close()
+
+    return tmp_file.name, cytokine_list
 
 # generate input for IMGT HighV-Quest
 # >wellname:index:number of reads

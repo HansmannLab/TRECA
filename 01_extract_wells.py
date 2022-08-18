@@ -53,26 +53,26 @@ DNA=set('ATGC\n')
 # parse fasta file line by line
 for line in seq:
     if set(line) <= DNA:
-	read_number+=1
+        read_number+=1
         # print out statistics of progress
-	print '\rAssigned', assigned, '/', read_number, 'TCR: ', tcr_count, 'BCR: ', bcr_count,
+        print('\rAssigned', assigned, '/', read_number, 'TCR: ', tcr_count, 'BCR: ', bcr_count)
         line=line.replace('\n','')
-        # T cell receptor read found
-	if line[2:7] in TCR_plate_barcodes and line[9:14] in TCR_row_barcodes and line[len(line)-7:-2] in TCR_column_barcodes and \
-                not 'N' in line and not 'AAAAAAAAAAAA' in line and not 'GGGGGGGGGGGG' in line and not 'CCCCCCCCCCCC' in line and not 'TTTTTTTTTTTT' in line:
-		location=str(TCR_plate_barcodes.index(line[2:7])+1) + str(chr(ord('A')+TCR_row_barcodes.index(line[9:14]))) + str(TCR_column_barcodes.index(line[len(line)-7:-2])+1)
-		if location in t_ass_seqs:
-			t_ass_seqs[location].append(revcompl(line[14:].replace('\n','')))
-		else:
-			t_ass_seqs[location]=[revcompl(line[14:].replace('\n', ''))]
-		tcr_count+=1
-		assigned+=1
-        # sequence not assigned
+    # T cell receptor read found
+    if line[2:7] in TCR_plate_barcodes and line[9:14] in TCR_row_barcodes and line[len(line)-7:-2] in TCR_column_barcodes and \
+            not 'N' in line and not 'AAAAAAAAAAAA' in line and not 'GGGGGGGGGGGG' in line and not 'CCCCCCCCCCCC' in line and not 'TTTTTTTTTTTT' in line:
+        location=str(TCR_plate_barcodes.index(line[2:7])+1) + str(chr(ord('A')+TCR_row_barcodes.index(line[9:14]))) + str(TCR_column_barcodes.index(line[len(line)-7:-2])+1)
+        if location in t_ass_seqs:
+            t_ass_seqs[location].append(revcompl(line[14:].replace('\n','')))
         else:
-                unassigned+=1
+            t_ass_seqs[location]=[revcompl(line[14:].replace('\n', ''))]
+        tcr_count+=1
+        assigned+=1
+    # sequence not assigned
+    else:
+        unassigned+=1
 
 # statistics of assigned and unassigned sequences
-print 'Unassigned: ', unassigned, ' Assigned: ', assigned
+print('Unassigned: ', unassigned, ' Assigned: ', assigned)
 seq.close()
 
 # write sequences to files
